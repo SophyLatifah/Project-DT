@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 flex justify-around items-center bg-white shadow">
+    <header className="bg-white fixed top-0 left-0 right-0 h-16 flex justify-around items-center shadow">
       <h1 className="font-extrabold">KLEANZY</h1>
 
       <nav className="space-x-4">
