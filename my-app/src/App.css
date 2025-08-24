@@ -4,6 +4,25 @@
   padding: 0;
 }
 
+.main-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  padding: 1rem;
+  
+}
+
 /* text-white {
   color: #fff;
 } */

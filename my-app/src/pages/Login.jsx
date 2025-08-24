@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const Navigate = useNavigate();
+
   return (
     <div>
       <section className="mt-16 pt-10 flex-grow flex justify-center flex-col space-y-4 px-10">
@@ -27,7 +31,9 @@ export default function Login() {
             <input type="checkbox" id="remember" className="mr-2"/>
             <label htmlFor="remember" className="text-sm">Remember Me?</label>
           </div>
-          <button type="submit" className="bg-[#FFB701] w-full py-2 rounded text-white font-semibold">Login</button>
+          <button 
+          onClick={() => Navigate("/dashboard")}
+            type="submit" className="bg-[#FFB701] w-full py-2 rounded text-white font-semibold">Login</button>
         </form>
       </div>
     </div>

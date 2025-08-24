@@ -1,3 +1,11 @@
+
+
 export default function Dashboard() {
-  return <h1>Dashboard Page</h1>;
+  return (
+    <div>
+      <section className="mt-16">
+        <h1>DASHBOARD</h1>
+      </section>
+    </div>
+  );
 }

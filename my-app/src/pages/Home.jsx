@@ -22,7 +22,7 @@ export default function Home() {
     <section>
       <h2 className="text-lg text-center font-bold mt-2">OUR SERVICE</h2>
     
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl px-10 mt-4 mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl px-10 mt-4 mx-auto pb-12">
         {/* Card 1 */}
         <div className=" p-6 border rounded-lg shadow-md bg-[#8ECAE6]">
           <h2 className="text-4xl text-center">🚗</h2>

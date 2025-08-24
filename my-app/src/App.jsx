@@ -14,6 +14,7 @@ export default function App() {
   return (
     <>
       <Header />
+      <main className="flex-1 pb-12">
       <Routes>
         {/* General Routes */}
         <Route path="/" element={<Home />} />
@@ -26,7 +27,7 @@ export default function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/tracking" element={<Tracking />} />
       </Routes>
-
+      </main>
       <Footer />
     </>
   );
