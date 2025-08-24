@@ -26,6 +26,7 @@ export default function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/tracking" element={<Tracking />} />
       </Routes>
+
       <Footer />
     </>
   );
