@@ -44,7 +44,7 @@ export default function About() {
       <h1 className="text-center shadow pb-10 pt-10 bg-[#209EBB] text-2xl font-bold text-white">Kleanzy – Solusi Laundry Praktis dalam Satu Platform</h1>
     </section>
     </div>
-       
+    
   );
 }
 
