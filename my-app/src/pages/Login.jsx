@@ -24,7 +24,7 @@ export default function Login() {
       </section>
 
       {/* Login Form */}
-      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-lg shadow-md">
+      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-lg shadow-2xl">
         <h2 className="text-center font-bold text-lg mb-6 text-white">LOGIN</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
