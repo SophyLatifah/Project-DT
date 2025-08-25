@@ -18,7 +18,7 @@ export default function Dashboard() {
   return (
     <div>
       {/* Kotak sambutan */}
-      <section className="">
+      <section>
         <div className="gap-8 shadow-xl mx-auto items-center">
           {/* Cards Section */}
           <div className="pb-10 px-10 p-3 rounded-lg shadow-md bg-[#FFB701] ">
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-6xl px-5 pb-12 mx-auto">
           {/* Cards 1*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#8ECAE6] shadow-xl">
+          <div className="p-6 rounded-lg bg-[#8ECAE6] shadow-xl">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">Fresh & Fold Laundry</h3>
             <p className="mt-5 text-black text-base">
