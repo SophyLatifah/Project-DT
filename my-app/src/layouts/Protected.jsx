@@ -25,9 +25,9 @@ export default function DashboardLayout() {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col">
+      <div className=" flex-1 flex flex-col">
         {/* Header dinamis berdasarkan route */}
-        <header className="flex justify-beetwen items-center bg-white p-4 shadow">
+        <header className="sticky top-0 z-50 flex justify-beetwen items-center bg-white p-4 shadow">
           <h1 className="text-3xl ">{getTitle()}</h1>
           <div className="ml-auto flex items-center space-x-4">
           <span className="text font-semibold">👤 {Username || "User"}</span>

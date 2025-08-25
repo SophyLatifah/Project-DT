@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import LaundryImg from "../assets/Laundry.jpg";
 
 export default function Home() {
   const Navigate = useNavigate();
@@ -6,8 +7,7 @@ export default function Home() {
   return (
     <div>
     <section 
-      className="mt-16 pb-15 pt-15 bg-[#209EBB] w-full max-w-full" 
-      style={{ backgroundImage: "url('/assets/Laundry.jpg')", opacity: 0.9, }}>
+      className="mt-16 pb-15 pt-15 bg-[#209EBB] w-full max-w-full">
       <div className="max-w-4xl px-10">
       
       <h1 className="text-4xl font-bold text-white">WELCOME TO KLEANZY!</h1>

@@ -40,11 +40,11 @@ export default function Dashboard() {
 
       {/* Additional Sections */}
       <section>
-        <h2 className="text-lg font-bold mt-10">TOP LAUNDRY PARTNERS!</h2>
+        <h2 className="text-lg font-bold mt-10 text-center">TOP LAUNDRY PARTNERS!</h2>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-5 max-w-5xl px-5 pb-12">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-6xl px-5 pb-12 mx-auto">
           {/* Cards 1*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#8ECAE6]">
+          <div className="p-6 rounded-lg shadow-md bg-[#8ECAE6] shadow-xl">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">Fresh & Fold Laundry</h3>
             <p className="mt-5 text-black text-base">
@@ -56,7 +56,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 2*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#209EBB]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB]">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">BubbleWash Clean</h3>
             <p className="mt-5 text-black text-base">
@@ -68,7 +68,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 3*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#8ECAE6]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#8ECAE6]">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">Rapih Bersih Laundry</h3>
             <p className="mt-5 text-black text-base">
@@ -80,7 +80,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 4*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#209EBB]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB]">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">EcoWash Cimahi</h3>
             <p className="mt-5 text-black text-base">
@@ -91,17 +91,7 @@ export default function Dashboard() {
             </p>
           </div>
 
-          {/* Cards 5*/}
-          <div className="p-6 rounded-lg shadow-md bg-[#8ECAE6]">
-            <h2 className="text-4xl text-center">🧼</h2>
-            <h3 className="text-xl text-center text-white font-semibold ">Fresh & Fold Laundry</h3>
-            <p className="mt-5 text-black text-base">
-            <>
-                <li>Cimahi Tengah</li>
-                <li>Spesialis cuci lipat harian, wangi tahan lama.</li>
-            </>
-            </p>
-          </div>
+          
 
         </div>
       </section>
