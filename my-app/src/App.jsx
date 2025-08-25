@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
 import "./App.css";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 // Layouts
 import Main from "./layouts/Main";
@@ -23,21 +23,23 @@ export default function App() {
   return (
 
     <>
-     
       
       <main className="flex-1 pb-12">
       <Routes>
         {/* General Routes */}
+      
         <Route path="/" element={<Main><Home /></Main>} />
         <Route path="/about" element={<Main><About /></Main>} />
         <Route path="/contact" element={<Main><ContactUs /></Main>} />
         <Route path="/login" element={<Main><Login /></Main>} />
-
-        {/* Protected Routes */}
-        <Route path="/dashboard" element={<Protected><Dashboard /></Protected> } />
-        <Route path="/order" element={<Protected><Order /></Protected>} />
-        <Route path="/tracking" element={<Protected> <Tracking /></Protected>} />
-        
+      
+      
+       {/* Protected Routes */}
+       <Route element={<Protected />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/tracking" element={ <Tracking />} />
+        </Route>
       </Routes>
       </main>
       <Footer />

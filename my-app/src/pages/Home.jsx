@@ -28,7 +28,6 @@ export default function Home() {
           <h2 className="text-4xl text-center">🚗</h2>
           <h3 className="text-xl text-center text-white font-semibold">Antar Jemput Cucian</h3>
           <p className="mt-2 text-black text-center text-base">Tinggal pesan, kurir kami siap jemput cucian kotor Anda dan antar kembali baju bersih siap pakai.</p>
-
         </div>
 
         {/* Card 2 */}
