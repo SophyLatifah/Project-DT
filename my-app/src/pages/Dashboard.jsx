@@ -42,27 +42,57 @@ export default function Dashboard() {
       <section>
         <h2 className="text-lg font-bold mt-10">TOP LAUNDRY PARTNERS!</h2>
 
-        <div>
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-5 max-w-5xl px-5 mx-auto pb-12">
           {/* Cards 1*/}
-          <div>
-
+          <div className="p-6 border rounded-lg shadow-md bg-[#8ECAE6]">
+            <h2 className="text-4xl text-center">🧼</h2>
+            <h3 className="text-xl text-center text-white font-semibold ">Fresh & Fold Laundry</h3>
+            <p className="mt-5 text-black text-base">
+            <>
+                <li>Cimahi Tengah</li>
+                <li>Spesialis cuci lipat harian, wangi tahan lama.</li>
+            </>
+            </p>
           </div>
 
           {/* Cards 2*/}
-          <div>
-
+          <div className="p-6 border rounded-lg shadow-md bg-[#209EBB]">
+            <h2 className="text-4xl text-center">🧼</h2>
+            <h3 className="text-xl text-center text-white font-semibold ">BubbleWash Clean</h3>
+            <p className="mt-5 text-black text-base">
+            <>
+                <li>Cimahi Utara</li>
+                <li>Ramah lingkungan dengan detergen organik.</li>
+            </>
+            </p>
           </div>
 
           {/* Cards 3*/}
-          <div>
-
+          <div className="p-6 border rounded-lg shadow-md bg-[#8ECAE6]">
+            <h2 className="text-4xl text-center">🧼</h2>
+            <h3 className="text-xl text-center text-white font-semibold ">Rapih Bersih Laundry</h3>
+            <p className="mt-5 text-black text-base">
+            <>
+                <li>Cimahi Tengah</li>
+                <li>Spesialis cuci lipat harian, wangi tahan lama.</li>
+            </>
+            </p>
           </div>
 
           {/* Cards 4*/}
-          <div>
-
+          <div className="p-6 border rounded-lg shadow-md bg-[#209EBB]">
+            <h2 className="text-4xl text-center">🧼</h2>
+            <h3 className="text-xl text-center text-white font-semibold ">EcoWash Cimahi</h3>
+            <p className="mt-5 text-black text-base">
+            <>
+                <li>Cimahi Tengah</li>
+                <li>Spesialis cuci lipat harian, wangi tahan lama.</li>
+            </>
+            </p>
           </div>
+
           
+
         </div>
       </section>
     </div>
