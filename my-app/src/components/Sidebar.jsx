@@ -1,20 +1,23 @@
-// src/components/Sidebar.jsx
-import React from "react";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+export default function Sidebar() {
   return (
-    <aside className="w-48 bg-teal-600 text-white h-screen p-4 flex flex-col justify-between">
-      <div>
-        <h2 className="text-lg font-bold mb-4">Kleanzy</h2>
-        <ul className="flex flex-col gap-2">
-          <li>Dashboard</li>
-          <li>Order</li>
-          <li>Tracking</li>
-        </ul>
-      </div>
-      <button className="bg-yellow-400 px-4 py-2 rounded">Logout</button>
+    <aside className="w-35 bg-[#209EBB] h-screen p-6">
+      <h2 className="text-xl font-bold mb-10 text-white">KLEANZY</h2>
+      <nav className="flex flex-col space-y-4">
+        <Link to="/dashboard" className="text-white hover:font-bold">
+          Dashboard
+        </Link>
+        <Link to="/order" className="text-white hover:font-bold">
+          Order
+        </Link>
+        <Link to="/tracking" className="text-white hover:font-bold">
+          Tracking
+        </Link>
+        <Link to="/" className="text-white hover:font-bold mt-165 py-3 text-center bg-[#FFB701] text-white font-semibold rounded hover:bg-yellow-500 transition-colors ">
+          Logout
+        </Link>
+      </nav>
     </aside>
   );
-};
-
-export default Sidebar;
+}
