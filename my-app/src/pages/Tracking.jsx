@@ -1,3 +1,13 @@
 export default function Tracking() {
-  return <h1>Tracking Page</h1>;
+  return (
+    <div>
+      <section>
+        <h2>Tracking loh</h2>
+      </section>
+
+      <section>
+
+      </section>
+    </div>
+  );
 }
