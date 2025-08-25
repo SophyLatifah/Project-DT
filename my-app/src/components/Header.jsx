@@ -7,13 +7,13 @@ const Header = () => {
       <h1 className="font-extrabold">KLEANZY</h1>
 
       <nav className="space-x-4">
-        <Link to="/" className="">
+        <Link to="/" className=" hover:text-yellow-500 transition-colors">
           Home
         </Link>
-        <Link to="/about" className="/about">
+        <Link to="/about" className="/about hover:text-yellow-500 transition-colors">
           About Us
         </Link>
-        <Link to="/contact" className="">
+        <Link to="/contact" className=" hover:text-yellow-500 transition-colors">
           Contact Us
         </Link>
       </nav>
@@ -21,7 +21,7 @@ const Header = () => {
       <Button>
         <Link 
           to ="login"
-          className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded"
+          className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors"
         >
           Login
           </Link>
