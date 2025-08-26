@@ -1,60 +1,26 @@
 const express = require("express");
-const db = require("./db");
-var cors = require("cors");
-
 const app = express();
+var cors = require("cors");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/userRoutes");
+
 const PORT = 3000;
 
+const db = require("./config/db");
+db();
+
+// enabled json
 app.use(express.json());
+
+// enabled urlencoded
+app.use(express.urlencoded({ extended: false }));
+
+// enable cors (user request)
 app.use(cors());
 
-app.get("/profile", (request, response) => {
-  // ...
-});
-
-app.get("/order/:orderId", (request, response) => {
-  //
-});
-
-app.post("/order", (request, response) => {
-  //
-});
-
-app.get("/order", (request, response) => {
-  //
-});
-
-app.get("/layanan-laundry", (request, response) => {
-  //
-});
-
-app.put("/order/:id", (request, response) => {
-  //
-});
-
-app.get("/pembayaran", (request, response) => {
-  //
-});
-
-app.put("/pembayaran/:id", (request, response) => {
-  //
-});
-
-app.get("/layanan-laundry", (request, response) => {
-  //
-});
-
-app.post("/layanan-laundry", (request, response) => {
-  //
-});
-
-app.put("/layanan-laundry/:id", (request, response) => {
-  //
-});
-
-app.delete("/layanan-laundry", (request, response) => {
-  //
-});
+//! routes middleware
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
