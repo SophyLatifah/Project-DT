@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
     <section 
-      className="mt-16 pb-15 pt-15 bg-[#209EBB] w-full max-w-full">
+      className="relative mt-16 pb-15 pt-15 bg-[#209EBB] w-full max-w-full">
       <div className="max-w-4xl px-10">
       
       <h1 className="text-4xl font-bold text-white">WELCOME TO KLEANZY!</h1>
@@ -20,6 +20,17 @@ export default function Home() {
         Login
       </button>
       </div>
+
+      {/* Bubble Sabun */}
+        <div className="absolute bottom-0 left-10 w-12 h-12 bg-white/30 rounded-full animate-bubble"></div>
+        <div className="absolute bottom-0 left-1/3 w-8 h-8 bg-white/20 rounded-full animate-bubble delay-1000"></div>
+        <div className="absolute bottom-0 left-2/3 w-16 h-16 bg-white/25 rounded-full animate-bubble delay-2000"></div>
+        <div className="absolute bottom-0 right-10 w-10 h-10 bg-white/30 rounded-full animate-bubble delay-3000"></div>
+        <div className="absolute bottom-0 left-100 w-12 h-12 bg-white/30 rounded-full animate-bubble"></div>
+        <div className="absolute bottom-0 left-50 w-8 h-8 bg-white/20 rounded-full animate-bubble delay-1000"></div>
+        <div className="absolute bottom-0 right-80 w-10 h-10 bg-white/30 rounded-full animate-bubble delay-3000"></div>
+        <div className="absolute bottom-0 left-200 w-8 h-8 bg-white/20 rounded-full animate-bubble delay-1000"></div>
+        <div className="absolute bottom-0 left-250 w-12 h-12 bg-white/30 rounded-full animate-bubble"></div>
     </section>
 
     <section>
@@ -27,7 +38,10 @@ export default function Home() {
     
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl px-10 mt-4 mx-auto pb-12">
         {/* Card 1 */}
-        <div className=" p-6 shadow-xl rounded-lg shadow-md bg-[#8ECAE6]">
+        <div 
+        className=" p-6 shadow-xl rounded-lg shadow-md bg-[#8ECAE6]"
+
+        >
           <h2 className="text-4xl text-center">🚗</h2>
           <h3 className="text-xl text-center text-white font-semibold">Antar Jemput Cucian</h3>
           <p className="mt-2 text-black text-center text-base">Tinggal pesan, kurir kami siap jemput cucian kotor Anda dan antar kembali baju bersih siap pakai.</p>
