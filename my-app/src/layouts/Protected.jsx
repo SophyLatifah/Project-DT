@@ -1,4 +1,5 @@
 import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -22,22 +23,24 @@ export default function DashboardLayout() {
     };
 
     return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Sidebar />
 
-      <div className=" flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ml-40">
         {/* Header dinamis berdasarkan route */}
-        <header className="sticky top-0 z-50 flex justify-beetwen items-center bg-white p-4 shadow">
+        <header className="sticky top-0 z-50 flex justify-betwen items-center bg-white p-4 shadow">
           <h1 className="text-3xl ">{getTitle()}</h1>
           <div className="ml-auto flex items-center space-x-4">
-          <span className="text font-semibold">👤 {Username || "User"}</span>
+          <span className="font-semibold">👤 {Username || "User"}</span>
           </div>
         </header>
         
         
-        <main className="flex-1 p-6 bg-gray-50">
+        <main className="flex-1 p-6 bg-gray-50 ">
           <Outlet /> {/* <-- di sinilah page child (Dashboard, Order, Tracking) muncul */}
         </main>
+
+        
       </div>
     </div>
   );

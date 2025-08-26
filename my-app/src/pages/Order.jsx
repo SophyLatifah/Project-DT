@@ -31,7 +31,7 @@ export default function Order() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!partner || !address || !quantity <= 0) 
+    if (!partner || !address || !quantity || !service || !payment) 
     {
       alert("Please fill in all required fields.");
       return;
