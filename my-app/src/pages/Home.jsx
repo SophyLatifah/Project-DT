@@ -12,7 +12,7 @@ export default function Home() {
       
       <h1 className="text-4xl font-bold text-white">WELCOME TO KLEANZY!</h1>
       <p className="mt-2 text-white">Solusi laundry praktis, cepat, dan terpercaya.</p>
-
+ 
       <button
       onClick={() => Navigate("/login")}
         className="mt-15 px-6 py-2 bg-[#FFB701] text-white font-semibold rounded hover:bg-yellow-500 shadow-md transition-colors"
