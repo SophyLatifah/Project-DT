@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 
 // Protected pages
 import Dashboard from "./pages/Dashboard";
-import Order from "./pages/Order";
+import Order from "./pages/order";
 import Tracking from "./pages/Tracking";
 
 
