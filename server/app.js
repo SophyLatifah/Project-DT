@@ -52,14 +52,25 @@ app.post("/api/auth/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // simpan ke DB + log hasilnya
+    const [result] = await db.query(
+      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      [username, email, hashedPassword]
+    );
+
+    console.log("Insert result:", result); // 🔍 liat hasil insert
+    // result.affectedRows harusnya = 1
+    // result.insertId = ID user baru
+
     await db.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hashedPassword]
     );
 
-    console.log("User registered:", email);
+    console.log("User registered:", username, email);
 
-    res.json({ message: "Registrasi berhasil!" });
+    res.json({ message: "Registrasi berhasil!", userId: result.insertId });
   } catch (err) {
       console.error("Registration error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
