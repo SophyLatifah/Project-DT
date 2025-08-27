@@ -17,9 +17,12 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- ('Sopi', 'sopi@gmail.com', 'sopi123', 'user');
 
 -- SELECT *
--- 	FROM users;
+-- FROM users;
 
 -- SELECT * FROM users;
 
 -- SELECT DATABASE();
-SELECT email, HEX(email) FROM users;
+-- SELECT email, HEX(email) FROM users;
+
+-- CREATE TABLE testimoni (
+-- )

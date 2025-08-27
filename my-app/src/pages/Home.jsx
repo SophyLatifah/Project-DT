@@ -3,6 +3,10 @@ import LaundryImg from "../assets/Laundry.jpg";
 import user1 from "../assets/user1.jpg";
 import user2 from "../assets/user2.jpg";
 import user3 from "../assets/user3.jpg";
+import logo1 from "../assets/logo1.jpg";
+import logo2 from "../assets/logo2.jpg";
+import logo3 from "../assets/logo3.jpg";
+import logo4 from "../assets/logo4.jpg";
 
 export default function Home() {
   const Navigate = useNavigate();
@@ -43,7 +47,8 @@ export default function Home() {
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl px-10 mx-auto pb-12">
         {/* Card 1 */}
         <div 
-        className=" p-6 rounded-xl shadow-md bg-[#8ECAE6] transform transition duration-300 hover:scale-105">
+        className=" p-6 rounded-xl shadow-md bg-[#8ECAE6] transform transition duration-300 hover:scale-105"
+        >
           <h2 className="text-4xl text-center">🚗</h2>
           <h3 className="text-xl text-center text-white font-semibold">Antar Jemput Cucian</h3>
           <p className="mt-2 text-black text-center text-base">Tinggal pesan, kurir kami siap jemput cucian kotor Anda dan antar kembali baju bersih siap pakai.</p>
@@ -69,6 +74,7 @@ export default function Home() {
       <h2 className="text-2xl font-bold text-center mb-12">
         Apa Kata Pelanggan?
       </h2>
+
     <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
       <div className="bg-white shadow-md p-6 rounded-xl">
         <p className="text-gray-600 italic">
@@ -107,14 +113,12 @@ export default function Home() {
     Dipercaya Oleh :
   </h2>
   <div className="flex justify-center items-center gap-12 flex-wrap">
-    <img src="/assets/logo1.png" alt="Partner 1" className="h-12 grayscale hover:grayscale-0 transition"/>
-    <img src="/assets/logo2.png" alt="Partner 2" className="h-12 grayscale hover:grayscale-0 transition"/>
-    <img src="/assets/logo3.png" alt="Partner 3" className="h-12 grayscale hover:grayscale-0 transition"/>
-    <img src="/assets/logo4.png" alt="Partner 4" className="h-12 grayscale hover:grayscale-0 transition"/>
+    <img src={logo1} alt="Partner 1" className="h-12 grayscale hover:grayscale-0 transition"/>
+    <img src={logo2} alt="Partner 2" className="h-12 grayscale hover:grayscale-0 transition"/>
+    <img src={logo3} alt="Partner 3" className="h-12 grayscale hover:grayscale-0 transition"/>
+    <img src={logo4} alt="Partner 4" className="h-12 grayscale hover:grayscale-0 transition"/>
   </div>
 </section>
-
-    
 
     </div>
   );
