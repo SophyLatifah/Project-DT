@@ -1,13 +1,15 @@
 const express = require("express");
-HEAD
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const db = require("./config/db");
+
+// const authRoutes = require("./routes/auth");
+// const userRoutes = require("./routes/users");
+const db = require("./db");
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 const JWT_SECRET = "rahasia super aman";
 
 // Middleware
@@ -41,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Register
 app.post("/api/auth/register", async (req, res) => {
   const { username, email, password } = req.body;
+  console.log("Register input:", req.body);
 
   try {
     const [user] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
@@ -54,8 +57,11 @@ app.post("/api/auth/register", async (req, res) => {
       [username, email, hashedPassword]
     );
 
+    console.log("User registered:", email);
+
     res.json({ message: "Registrasi berhasil!" });
   } catch (err) {
+      console.error("Registration error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });

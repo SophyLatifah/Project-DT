@@ -11,7 +11,7 @@ export default function Login() {
     e.preventDefault(); // biar form nggak refresh halaman
   
   try {
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export default function Login() {
         <form onSubmit={handleLogin}>
           {error && (<p className="text-red-500 text-sm mb-4">{error}</p>)}
           <div className="mb-4">
-            <label className="block text-sm mb-1">Username :</label>
+            <label className="block text-sm mb-1">Email :</label>
             <div className="flex bg-white items-center rounded px-2 py-1">
               <input 
                 type="email" 
@@ -66,12 +66,12 @@ export default function Login() {
             <div className="flex bg-white items-center rounded px-2 py-1">
               <input 
               type="password" 
-              className="flex-row outline-none" 
+              className="flex-grow outline-none" 
               placeholder="Enter Password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required />
-              
+              required 
+              />
             </div>
           </div>
           <div className="mb-4 flex items-center">
