@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "./Button";
 
 const Header = () => {
@@ -7,35 +7,57 @@ const Header = () => {
       <h1 className="font-extrabold">KLEANZY</h1>
 
       <nav className="space-x-4">
-        <Link to="/" className=" hover:text-yellow-500 transition-colors">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 font-bold"
+              : "hover:text-yellow-500 transition-colors"
+          }
+        >
           Home
-        </Link>
-        <Link to="/about" className="/about hover:text-yellow-500 transition-colors">
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 font-bold"
+              : "hover:text-yellow-500 transition-colors"
+          }
+        >
           About Us
-        </Link>
-        <Link to="/contact" className=" hover:text-yellow-500 transition-colors">
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 font-bold"
+              : "hover:text-yellow-500 transition-colors"
+          }
+        >
           Contact Us
-        </Link>
+        </NavLink>
       </nav>
 
       <div className="flex space-x-4">
-      <Button>
-        <Link 
-          to ="login"
-          className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors shadow-xl"
-        >
-          Login
+        <Button>
+          <Link
+            to="/login"
+            className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors shadow-xl"
+          >
+            Login
           </Link>
-      </Button>
+        </Button>
 
-      <Button>
-        <Link 
-          to ="register"
-          className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors shadow-xl"
-        >
-          Registrasi
+        <Button>
+          <Link
+            to="/register"
+            className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors shadow-xl"
+          >
+            Registrasi
           </Link>
-      </Button>
+        </Button>
       </div>
     </header>
   );
