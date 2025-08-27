@@ -11,10 +11,10 @@ role ENUM('admin', 'user') DEFAULT 'user',
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (username, email, password, role)
-VALUES
-('Admin Kleanzy', 'admin@kleanzy.com', 'admin123', 'admin'),
-('Sopi', 'sopi@gmail.com', 'sopi123', 'user');alter
+-- INSERT INTO users (username, email, password, role)
+-- VALUES
+-- ('Admin Kleanzy', 'admin@kleanzy.com', 'admin123', 'admin'),
+-- ('Sopi', 'sopi@gmail.com', 'sopi123', 'user');
 
-SELECT *
-	FROM users,
+-- SELECT *
+-- 	FROM users;

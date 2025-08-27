@@ -26,6 +26,15 @@ const Header = () => {
           Login
           </Link>
       </Button>
+
+      <Button>
+        <Link 
+          to ="register"
+          className="bg-[#FFB701] text-white px-4 py-2 font-semibold rounded hover:bg-yellow-500 transition-colors shadow-md"
+        >
+          Registrasi
+          </Link>
+      </Button>
     </header>
   );
 };
