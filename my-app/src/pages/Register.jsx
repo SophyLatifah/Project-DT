@@ -61,9 +61,9 @@ export default function Register() {
       </section>
 
       {/* Register Form */}
-      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-lg shadow-2xl">
+      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-4xl shadow-2xl">
         <h2 className="text-center font-bold text-lg mb-6 text-white">
-          REGISTER
+          REGISTRASI
         </h2>
         <form onSubmit={handleRegister}>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -113,7 +113,7 @@ export default function Register() {
 
           <button
             type="submit"
-            className="bg-[#FFB701] w-full py-2 rounded text-white font-semibold hover:bg-yellow-500 transition-colors shadow-md"
+            className="bg-[#FFB701] w-full py-2 rounded-lg text-white font-semibold hover:bg-yellow-500 transition-colors shadow-md"
           >
             Register
           </button>

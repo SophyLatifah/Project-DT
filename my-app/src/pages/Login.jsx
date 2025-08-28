@@ -45,7 +45,7 @@ export default function Login() {
       </section>
 
       {/* Login Form */}
-      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-lg shadow-2xl">
+      <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-4xl shadow-2xl">
         <h2 className="text-center font-bold text-lg mb-6 text-white">LOGIN</h2>
         <form onSubmit={handleLogin}>
           {error && (<p className="text-red-500 text-sm mb-4">{error}</p>)}

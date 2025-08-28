@@ -23,7 +23,7 @@ export default function Dashboard() {
           {/* Cards Section */}
           <div className="pb-10 px-10 p-3 rounded-lg shadow-md bg-[#FFB701] ">
             <h2 className="mt-5 font-extrabold text-white text-4xl">Hai, {Username || "Username"}!</h2>
-            <p className="mt-4 text-xl">Sudah siap kami jemput cucianmu hari ini?</p>
+            <p className="mt-4 text-xl ">Sudah siap kami jemput cucianmu hari ini?</p>
 
             {/* Tombol Order */}
           <div className="flex w-full items-center">

@@ -17,82 +17,72 @@ app.use(cors());
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
-// ==================== USER (Protected Route) ==================== //
 
-// ==================== AUTH ROUTES ==================== //
-
-// Register
+// =========== Register ===========
 app.post("/api/auth/register", async (req, res) => {
   const { username, email, password } = req.body;
   console.log("Register input:", req.body);
 
-  const user = db.query("SELECT * FROM users WHERE email = ?", [email]);
-  if (user.length > 0) {
-    return res.status(400).json({ message: "Email sudah terdaftar" });
+  try {
+    // cek email
+     const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+    if (rows.length > 0) {
+      return res.status(400).json({ message: "Email sudah terdaftar" });
   }
 
+  // hash password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // simpan ke DB + log hasilnya
-  db.query(
-    "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
-    [username, email, hashedPassword],
-    (err, result) => {
-      if (err) {
-        console.error("Registration error:", err);
-        return res.status(500).json({
-          message: "Gagal melakukan registrasi",
-          error: err.message,
-        });
-      }
-      console.log("Insert result:", result); // 🔍 liat hasil insert
-      // result.affectedRows harusnya = 1
-      // result.insertId = ID user baru
+  // insert user
+  const [result] = await db.query(
+    "INSERT INTO users (username, email,password) VALUES (?, ?, ?)",
+     [username, email, hashedPassword]
+  );
 
-    await db.query(
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
-      [username, email, hashedPassword]
-    );
-
-    console.log("User registered:", username, email);
+   console.log("User registered:", username, email);
 
     res.json({ message: "Registrasi berhasil!", userId: result.insertId });
   } catch (err) {
-      console.error("Registration error:", err);
+    console.error("Registration error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });
 
-// Login
-// app.post("/api/auth/login", async (req, res) => {
-//   const { email, password } = req.body;
+// ============ Login ============ 
+app.post("/api/auth/login", async (req, res) => {
+  const { email, password } = req.body;
 
-//   try {
-//     const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [
-//       email,
-//     ]);
-//     if (rows.length === 0) {
-//       return res.status(400).json({ message: "Email tidak ditemukan" });
-//     }
+  try {
+    const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+    console.log("DB result:", rows);
 
-//     const user = rows[0];
-//     const match = await bcrypt.compare(password, user.password);
-//     if (!match) return res.status(400).json({ message: "Password salah" });
+    if (rows.length === 0) {
+      return res.status(400).json({ message: "Email tidak ditemukan" });
+    }
 
-//     const token = jwt.sign(
-//       { id: user.id, username: user.username, email: user.email },
-//       JWT_SECRET,
-//       { expiresIn: "1h" }
-//     );
+    const user = rows[0];
+    console.log("User dari DB", user);
 
-//     res.json({
-//       token,
-//       user: { id: user.id, username: user.username, email: user.email },
-//     });
-//   } catch (err) {
-//     res.status(500).json({ message: "Server error", error: err.message });
-//   }
-// });
+    const match = await bcrypt.compare(password, user.password);
+    console.log("Password match?", match);
+    
+    if (!match) return res.status(400).json({ message: "Password salah" });
+
+    const token = jwt.sign(
+      { id: user.id, username: user.username, email: user.email },
+      JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.json({
+      token,
+      user: { id: user.id, username: user.username, email: user.email },
+    });
+  } catch (err) {
+    console.error("Login error detail:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
 // ==================== MIDDLEWARE PROTECT ==================== //
 // function verifyToken(req, res, next) {

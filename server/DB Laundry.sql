@@ -60,16 +60,16 @@ CREATE TABLE `Order` (
     -- FOREIGN KEY (id_pembayaran) REFERENCES Pembayaran(id_pembayaran) -- kalau ada tabel Pembayaran
 );
 
+-- SELECT id, username, email, password, created_at FROM users;
 
--- INSERT INTO users (username, email, password, role)
--- VALUES
--- ('Admin Kleanzy', 'admin@kleanzy.com', 'admin123', 'admin'),
--- ('Sopi', 'sopi@gmail.com', 'sopi123', 'user');
 
 -- SELECT *
 -- FROM users;
 
--- SELECT * FROM users;
+
+DELETE FROM users WHERE email='riri@gmail.com';
+SELECT * FROM users;
+TRUNCATE users;
 
 -- SELECT DATABASE();
 -- SELECT email, HEX(email) FROM users;
