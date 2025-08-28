@@ -12,18 +12,28 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
+    if (!username || !email || !password) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    const data = {
+      username,
+      email,
+      password,
+    };
+
     try {
       const res = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify(data),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
+      const result = await res.json();
+      if (!result) {
         setError(data.message || "Register failed");
         return;
       }
@@ -33,7 +43,6 @@ export default function Register() {
 
       // Redirect ke halaman login setelah 2 detik
       setTimeout(() => navigate("/login"), 2000);
-
     } catch (err) {
       setError("An error occurred. Please try again.");
       console.error("Register error:", err);
@@ -53,7 +62,9 @@ export default function Register() {
 
       {/* Register Form */}
       <div className="bg-[#8ECAE6] mx-auto mt-10 p-8 w-96 rounded-lg shadow-2xl">
-        <h2 className="text-center font-bold text-lg mb-6 text-white">REGISTER</h2>
+        <h2 className="text-center font-bold text-lg mb-6 text-white">
+          REGISTER
+        </h2>
         <form onSubmit={handleRegister}>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           {success && <p className="text-green-500 text-sm mb-4">{success}</p>}

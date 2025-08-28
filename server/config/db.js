@@ -1,15 +1,18 @@
-//! Konfigurasi Database menggunakan Mongoose
-const mongoose = require("mongoose");
+const mysql = require("mysql2");
 
-async function connectMongoose() {
-  await mongoose
-    .connect("mongodb://localhost:27017/db_laundry")
-    .then(() => {
-      console.log("Database connected!");
-    })
-    .catch((err) => {
-      console.log("Unable to connect to the database", err);
-    });
-}
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "12345678",
+  database: "laundry_db",
+});
 
-module.exports = connectMongoose;
+// test db
+db.connect((err) => {
+  if (err) {
+    return console.log("Unable to connect to the database");
+  }
+  console.log("Database connected!");
+});
+
+module.exports = db;
