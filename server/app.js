@@ -6,40 +6,49 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("./config/db");
 
-// const authRoutes = require("./routes/auth");
-// const userRoutes = require("./routes/users");
-
 const PORT = 5000;
 const JWT_SECRET = "rahasia super aman";
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
+// ==================== JWT MIDDLEWARE ==================== //
+const authenticate = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1]; // Bearer <token>
 
-// =========== Register ===========
+  if (!token) return res.status(401).json({ message: "No token provided" });
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(403).json({ message: "Invalid token" });
+    req.user = decoded; // hasil decode { id, username, email }
+    next();
+  });
+};
+
+// ==================== REGISTER ==================== //
 app.post("/api/auth/register", async (req, res) => {
   const { username, email, password } = req.body;
   console.log("Register input:", req.body);
 
   try {
     // cek email
-     const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+    const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
     if (rows.length > 0) {
       return res.status(400).json({ message: "Email sudah terdaftar" });
-  }
+    }
 
-  // hash password
-  const hashedPassword = await bcrypt.hash(password, 10);
+    // hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  // insert user
-  const [result] = await db.query(
-    "INSERT INTO users (username, email,password) VALUES (?, ?, ?)",
-     [username, email, hashedPassword]
-  );
+    // insert user
+    const [result] = await db.query(
+      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      [username, email, hashedPassword]
+    );
 
-   console.log("User registered:", username, email);
+    console.log("User registered:", username, email);
 
     res.json({ message: "Registrasi berhasil!", userId: result.insertId });
   } catch (err) {
@@ -48,24 +57,20 @@ app.post("/api/auth/register", async (req, res) => {
   }
 });
 
-// ============ Login ============ 
+// ==================== LOGIN ==================== //
 app.post("/api/auth/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
-    console.log("DB result:", rows);
 
     if (rows.length === 0) {
       return res.status(400).json({ message: "Email tidak ditemukan" });
     }
 
     const user = rows[0];
-    console.log("User dari DB", user);
 
     const match = await bcrypt.compare(password, user.password);
-    console.log("Password match?", match);
-    
     if (!match) return res.status(400).json({ message: "Password salah" });
 
     const token = jwt.sign(
@@ -84,48 +89,19 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// ==================== MIDDLEWARE PROTECT ==================== //
-// function verifyToken(req, res, next) {
-//   const authHeader = req.headers["authorization"];
-//   const token = authHeader && authHeader.split(" ")[1]; // "Bearer token"
+// ==================== ORDERS ==================== //
 
-//   if (!token) return res.status(401).json({ message: "Token tidak ada" });
-
-//   jwt.verify(token, JWT_SECRET, (err, user) => {
-//     if (err) return res.status(403).json({ message: "Token tidak valid" });
-//     req.user = user; // simpan payload ke req
-//     next();
-//   });
-// }
-
-// ==================== PROTECTED ROUTES ==================== //
-// app.get("/api/profile", verifyToken, async (req, res) => {
-//   try {
-//     const [rows] = await db.query(
-//       "SELECT id, username, email FROM users WHERE id = ?",
-//       [req.user.id]
-//     );
-//     if (rows.length === 0)
-//       return res.status(404).json({ message: "User tidak ditemukan" });
-
-//     res.json(rows[0]);
-//   } catch (err) {
-//     res.status(500).json({ message: "Server error", error: err.message });
-//   }
-// });
-
-// ======== ORDER ============ //
-app.post("/api/orders", async (req, res) => {
+// Create Order
+app.post("/api/orders", authenticate, async (req, res) => {
   const {
-    id_user, 
-    item, 
-    quantity, 
-    total_harga, 
-    status_order, 
-    alamat_pengiriman, 
-    service_type, 
-    notes, 
-    payment_method
+    item,
+    quantity,
+    total_harga,
+    status_order,
+    alamat_pengiriman,
+    service_type,
+    notes,
+    payment_method,
   } = req.body;
 
   try {
@@ -134,14 +110,16 @@ app.post("/api/orders", async (req, res) => {
       (id_user, item, quantity, total_harga, status_order, alamat_pengiriman, service_type, notes, payment_method) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        id_user, 
-        item, 
-        quantity, 
-        total_harga,  
-        status_order || "pending", alamat_pengiriman, 
-        service_type, 
-        notes, 
-        payment_method]
+        req.user.id, // id user diambil dari token
+        item,
+        quantity,
+        total_harga,
+        status_order || "pending",
+        alamat_pengiriman,
+        service_type,
+        notes,
+        payment_method,
+      ]
     );
 
     res.json({ message: "Order berhasil dibuat!", orderId: result.insertId });
@@ -150,10 +128,80 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
+// Get all orders
+app.get("/api/orders", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT * FROM orders");
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
+// Get orders by user
+app.get("/api/orders/user/:id_user", async (req, res) => {
+  try {
+    const { id_user } = req.params;
+    const [rows] = await db.query("SELECT * FROM orders WHERE id_user = ?", [
+      id_user,
+    ]);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
+// Update order
+app.put("/api/orders/:id_order", async (req, res) => {
+  const { id_order } = req.params;
+  const {
+    item,
+    quantity,
+    total_harga,
+    status_order,
+    alamat_pengiriman,
+    service_type,
+    notes,
+    payment_method,
+  } = req.body;
 
+  try {
+    const [result] = await db.query(
+      `UPDATE orders 
+       SET item=?, quantity=?, total_harga=?, status_order=?, alamat_pengiriman=?, service_type=?, notes=?, payment_method=? 
+       WHERE id_order=?`,
+      [
+        item,
+        quantity,
+        total_harga,
+        status_order,
+        alamat_pengiriman,
+        service_type,
+        notes,
+        payment_method,
+        id_order,
+      ]
+    );
 
+    res.json({ message: "Order updated", affectedRows: result.affectedRows });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+// Delete order
+app.delete("/api/orders/:id_order", async (req, res) => {
+  const { id_order } = req.params;
+
+  try {
+    const [result] = await db.query("DELETE FROM orders WHERE id_order=?", [
+      id_order,
+    ]);
+    res.json({ message: "Order deleted", affectedRows: result.affectedRows });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
 
 // ==================== START SERVER ==================== //
 app.listen(PORT, () => {

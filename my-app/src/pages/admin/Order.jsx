@@ -185,7 +185,7 @@ const handleSubmit = async (e) => {
               Start Your Payment
             </h2>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-sm font-medium">Total Cost</label>
                 <input

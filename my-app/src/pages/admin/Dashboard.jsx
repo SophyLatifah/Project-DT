@@ -21,7 +21,7 @@ export default function Dashboard() {
       <section>
         <div className="gap-8 shadow-xl mx-auto items-center">
           {/* Cards Section */}
-          <div className="pb-10 px-10 p-3 rounded-2xl shadow-md bg-[#FFB701]  mx-auto mt-6 p-8 ">
+          <div className="pb-10 px-10 rounded-2xl shadow-md bg-[#FFB701]  mx-auto mt-6 p-8 ">
             <h2 className="mt-5 font-extrabold text-white text-4xl">Hai, {Username || "Username"}!</h2>
             <p className="mt-4 text-xl ">Sudah siap kami jemput cucianmu hari ini?</p>
 
@@ -29,7 +29,7 @@ export default function Dashboard() {
           <div className="flex w-full items-center">
           <button
             onClick={() => Navigate("/order")}
-              className="ml-auto text-center px-6 py-2 bg-white font-semibold rounded-4xl hover:bg-gray-200 transition-colors shadow-md transform transition duration-300 hover:scale-105"
+              className="ml-auto text-center px-6 py-2 bg-white font-semibold rounded-4xl hover:bg-gray-200 shadow-md transform transition duration-300 hover:scale-105"
             >
               Order Now
           </button>

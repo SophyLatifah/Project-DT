@@ -2,18 +2,60 @@ import { useEffect, useState } from "react";
 
 export default function Tracking() {
   const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const storedOrder = localStorage.getItem("orderData");
-    if (storedOrder) {
-      setOrder(JSON.parse(storedOrder));
-    }
+  // useEffect(() => {
+  //   const storedOrder = localStorage.getItem("orderData");
+  //   if (storedOrder) {
+  //     setOrder(JSON.parse(storedOrder));
+  //   }
+  // }, []);
+
+  // if (!order) {
+  //   return (
+  //     <div className="p-6">
+  //       <h2 className="text-2xl font-bold">No order found</h2>
+  //       <p className="text-gray-600">Silakan buat order dulu 👕</p>
+  //     </div>
+  //   );
+  // }
+
+  // const steps = [
+  //   "Order Received",
+  //   "Washing",
+  //   "Drying",
+  //   "Ironing",
+  //   "Ready for Pickup/Delivery",
+  //   "On the way",
+  //   "Delivered",
+  // ];
+
+useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/orders"); 
+        if (!res.ok) throw new Error("Gagal fetch data orders");
+        const data = await res.json();
+        console.log("Order dari API:", data);
+
+        setOrder(data);
+      } catch (err) {
+        console.error("Error fetch order:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrder();
   }, []);
+
+  if (loading) return <p className="p-6">Loading...</p>;
 
   if (!order) {
     return (
       <div className="p-6">
         <h2 className="text-2xl font-bold">No order found</h2>
+        
         <p className="text-gray-600">Silakan buat order dulu 👕</p>
       </div>
     );
@@ -28,6 +70,7 @@ export default function Tracking() {
     "On the way",
     "Delivered",
   ];
+
 
   return (
     <div className="p-6">
@@ -98,3 +141,4 @@ export default function Tracking() {
     </div>
   );
 }
+
