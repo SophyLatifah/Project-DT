@@ -63,10 +63,10 @@ app.post("/api/auth/register", async (req, res) => {
     // result.affectedRows harusnya = 1
     // result.insertId = ID user baru
 
-    await db.query(
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
-      [username, email, hashedPassword]
-    );
+    // await db.query(
+    //   "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+    //   [username, email, hashedPassword]
+    // );
 
     console.log("User registered:", username, email);
 
