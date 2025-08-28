@@ -7,7 +7,7 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR (100) NOT NULL,
 email VARCHAR (255) NOT NULL UNIQUE,
 password VARCHAR (255) NOT NULL,
-role ENUM('admin', 'user') DEFAULT 'user',
+role ENUM('admin', 'user'),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -42,34 +42,50 @@ CREATE TABLE LayananLaundry (
 -- =========================
 -- Tabel Order
 -- =========================
-CREATE TABLE `Order` (
-    id_order INT AUTO_INCREMENT PRIMARY KEY,
-    id_konsumen INT NOT NULL,
-    id_mitra INT NOT NULL,
-    id_layanan INT NOT NULL,
-    id_promo INT NULL,
-    id_pembayaran INT NOT NULL,
-    tanggal_order DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status_order VARCHAR(50),
-    total_harga DECIMAL(12,2),
+-- CREATE TABLE `Order` (
+--     id_order INT AUTO_INCREMENT PRIMARY KEY,
+--     id_konsumen INT NOT NULL,
+--     id_mitra INT NOT NULL,
+--     id_layanan INT NOT NULL,
+--     id_promo INT NULL,
+--     id_pembayaran INT NOT NULL,
+--     tanggal_order DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     status_order VARCHAR(50),
+--     total_harga DECIMAL(12,2),
 
-    FOREIGN KEY (id_mitra) REFERENCES MitraLaundry(id_mitra),
-    FOREIGN KEY (id_layanan) REFERENCES LayananLaundry(id_layanan)
-    -- FOREIGN KEY (id_konsumen) REFERENCES Konsumen(id_konsumen), -- kalau ada tabel Konsumen
-    -- FOREIGN KEY (id_promo) REFERENCES Promo(id_promo),           -- kalau ada tabel Promo
-    -- FOREIGN KEY (id_pembayaran) REFERENCES Pembayaran(id_pembayaran) -- kalau ada tabel Pembayaran
-);
+--     FOREIGN KEY (id_mitra) REFERENCES MitraLaundry(id_mitra),
+--     FOREIGN KEY (id_layanan) REFERENCES LayananLaundry(id_layanan)
+--     -- FOREIGN KEY (id_konsumen) REFERENCES Konsumen(id_konsumen), -- kalau ada tabel Konsumen
+--     -- FOREIGN KEY (id_promo) REFERENCES Promo(id_promo),           -- kalau ada tabel Promo
+--     -- FOREIGN KEY (id_pembayaran) REFERENCES Pembayaran(id_pembayaran) -- kalau ada tabel Pembayaran
+-- );
 
 -- SELECT id, username, email, password, created_at FROM users;
 
+CREATE TABLE IF NOT EXISTS orders (
+	id_order INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    item VARCHAR(100) NOT NULL,
+    quantity INT NOT NULL,
+    total_harga DECIMAL(12,2),
+    status_order VARCHAR(50) DEFAULT 'pending',
+    tanggal_order TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    alamat_pengiriman TEXT,
+    service_type VARCHAR(100),
+    notes TEXT,
+    payment_method VARCHAR(50),
+    FOREIGN KEY (id_user) REFERENCES userS(ID)
+);
 
 -- SELECT *
 -- FROM users;
 
 
-DELETE FROM users WHERE email='riri@gmail.com';
+-- DELETE FROM users WHERE email='riri@gmail.com';
 SELECT * FROM users;
-TRUNCATE users;
+
+SELECT * FROM orders;
+-- TRUNCATE users;
 
 -- SELECT DATABASE();
 -- SELECT email, HEX(email) FROM users;
