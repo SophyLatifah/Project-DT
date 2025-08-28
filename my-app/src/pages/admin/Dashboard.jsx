@@ -21,7 +21,7 @@ export default function Dashboard() {
       <section>
         <div className="gap-8 shadow-xl mx-auto items-center">
           {/* Cards Section */}
-          <div className="pb-10 px-10 p-3 rounded-lg shadow-md bg-[#FFB701] ">
+          <div className="pb-10 px-10 p-3 rounded-2xl shadow-md bg-[#FFB701]  mx-auto mt-6 p-8 ">
             <h2 className="mt-5 font-extrabold text-white text-4xl">Hai, {Username || "Username"}!</h2>
             <p className="mt-4 text-xl ">Sudah siap kami jemput cucianmu hari ini?</p>
 
@@ -29,7 +29,7 @@ export default function Dashboard() {
           <div className="flex w-full items-center">
           <button
             onClick={() => Navigate("/order")}
-              className="ml-auto text-center px-6 py-2  bg-white font-semibold rounded hover:bg-gray-200 transition-colors shadow-md"
+              className="ml-auto text-center px-6 py-2 bg-white font-semibold rounded-4xl hover:bg-gray-200 transition-colors shadow-md transform transition duration-300 hover:scale-105"
             >
               Order Now
           </button>
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-6xl px-5 pb-12 mx-auto">
           {/* Cards 1*/}
-          <div className="p-6 rounded-lg bg-[#8ECAE6] shadow-xl">
+          <div className="p-6 rounded-lg bg-[#8ECAE6] shadow-xl transform transition duration-300 hover:scale-105">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">Fresh & Fold Laundry</h3>
             <p className="mt-5 text-black text-base">
@@ -56,7 +56,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 2*/}
-          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB] transform transition duration-300 hover:scale-105">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">BubbleWash Clean</h3>
             <p className="mt-5 text-black text-base">
@@ -68,7 +68,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 3*/}
-          <div className="p-6 rounded-lg shadow-xl bg-[#8ECAE6]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#8ECAE6] transform transition duration-300 hover:scale-105">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">Rapih Bersih Laundry</h3>
             <p className="mt-5 text-black text-base">
@@ -80,7 +80,7 @@ export default function Dashboard() {
           </div>
 
           {/* Cards 4*/}
-          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB]">
+          <div className="p-6 rounded-lg shadow-xl bg-[#209EBB] transform transition duration-300 hover:scale-105">
             <h2 className="text-4xl text-center">🧼</h2>
             <h3 className="text-xl text-center text-white font-semibold ">EcoWash Cimahi</h3>
             <p className="mt-5 text-black text-base">

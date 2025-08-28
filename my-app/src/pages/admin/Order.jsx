@@ -28,38 +28,80 @@ export default function Order() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    if (!partner || !address || !quantity || !service || !payment) 
-    {
-      alert("Please fill in all required fields.");
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // bikin object order
-    const orderData = {
-    orderId: Date.now(),
-    orderDate: new Date().toLocaleDateString("id-ID"),
-    name: Username,
-    partner,
-    address,
+  if (!partner || !address || !quantity || !service || !payment) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+ 
+  const orderData = {
+    id_user: 1, // dari session login
+    item: partner, // partner laundry yg dipilih
     quantity,
-    service,
+    total_harga: totalCost,
+    status_order: "Order Received", // override default "pending"
+    alamat_pengiriman: address,
+    service_type: service,
     notes,
-    payment,
-    promo,
-    totalCost,
-    eta: "2 hari",
-    status: "Order Received"
-    }
-    
-    // Simpan ke localStorage
-     localStorage.setItem("orderData", JSON.stringify(orderData));
+    payment_method: payment,
+};
 
-    // redirect ke halaman tracking
+
+
+  try {
+    const res = await fetch("http://localhost:5000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderData),
+    });
+
+    const data = await res.json();
+    console.log("Order berhasil:", data);
+
+    // setelah sukses → redirect ke tracking
     Navigate("/tracking");
-  };
+  } catch (err) {
+    console.error("Gagal kirim order:", err);
+  }
+};
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (!partner || !address || !quantity || !service || !payment) 
+  //   {
+  //     alert("Please fill in all required fields.");
+  //     return;
+  //   }
+
+  //   // bikin object order
+  //   const orderData = {
+  //   orderId: Date.now(),
+  //   orderDate: new Date().toLocaleDateString("id-ID"),
+  //   name: Username,
+  //   partner,
+  //   address,
+  //   quantity,
+  //   service,
+  //   notes,
+  //   payment,
+  //   promo,
+  //   totalCost,
+  //   eta: "2 hari",
+  //   status: "Order Received"
+  //   }
+    
+  //   // Simpan ke localStorage
+  //    localStorage.setItem("orderData", JSON.stringify(orderData));
+
+  //   // redirect ke halaman tracking
+  //   Navigate("/tracking");
+  // };
 
   return (
     <div className="mih-h-screen bg-gray-50 p-6">
@@ -68,7 +110,7 @@ export default function Order() {
         <p className="mt-2 text-xl">Yuk pilih layanan laundry mu.</p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mt-20 mx-auto">
         {/* Form Order */}
         <div className="bg-[#8ECAE6] p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-4 text-center">

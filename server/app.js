@@ -114,6 +114,47 @@ app.post("/api/auth/login", async (req, res) => {
 //   }
 // });
 
+// ======== ORDER ============ //
+app.post("/api/orders", async (req, res) => {
+  const {
+    id_user, 
+    item, 
+    quantity, 
+    total_harga, 
+    status_order, 
+    alamat_pengiriman, 
+    service_type, 
+    notes, 
+    payment_method
+  } = req.body;
+
+  try {
+    const [result] = await db.query(
+      `INSERT INTO orders 
+      (id_user, item, quantity, total_harga, status_order, alamat_pengiriman, service_type, notes, payment_method) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        id_user, 
+        item, 
+        quantity, 
+        total_harga,  
+        status_order || "pending", alamat_pengiriman, 
+        service_type, 
+        notes, 
+        payment_method]
+    );
+
+    res.json({ message: "Order berhasil dibuat!", orderId: result.insertId });
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+});
+
+
+
+
+
+
 // ==================== START SERVER ==================== //
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

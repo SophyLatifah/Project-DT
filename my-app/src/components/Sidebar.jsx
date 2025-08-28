@@ -15,7 +15,7 @@ export default function Sidebar() {
           Tracking
         </Link>
         <div className="mt-auto flex flex-col justify-between">
-        <Link to="/" className="text-white hover:font-bold py-3 text-center bg-[#FFB701] font-semibold rounded hover:bg-yellow-500 transition-colors shadow-xl block">
+        <Link to="/" className="text-white hover:font-bold py-3 text-center bg-[#FFB701] font-semibold rounded-4xl hover:bg-yellow-500 transition-colors shadow-xl block">
           Logout
         </Link>
         </div>
