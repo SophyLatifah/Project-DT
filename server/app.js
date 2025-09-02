@@ -93,6 +93,11 @@ app.post("/api/auth/login", async (req, res) => {
 
 // Create Order
 app.post("/api/orders", authenticate, async (req, res) => {
+console.log("Received order data:", req.body);
+console.log("User ID from token:", req.user.id);
+
+
+  
   const {
     item,
     quantity,
@@ -151,57 +156,57 @@ app.get("/api/orders/user/:id_user", async (req, res) => {
   }
 });
 
-// Update order
-app.put("/api/orders/:id_order", async (req, res) => {
-  const { id_order } = req.params;
-  const {
-    item,
-    quantity,
-    total_harga,
-    status_order,
-    alamat_pengiriman,
-    service_type,
-    notes,
-    payment_method,
-  } = req.body;
+// // Update order
+// app.put("/api/orders/:id_order", async (req, res) => {
+//   const { id_order } = req.params;
+//   const {
+//     item,
+//     quantity,
+//     total_harga,
+//     status_order,
+//     alamat_pengiriman,
+//     service_type,
+//     notes,
+//     payment_method,
+//   } = req.body;
 
-  try {
-    const [result] = await db.query(
-      `UPDATE orders 
-       SET item=?, quantity=?, total_harga=?, status_order=?, alamat_pengiriman=?, service_type=?, notes=?, payment_method=? 
-       WHERE id_order=?`,
-      [
-        item,
-        quantity,
-        total_harga,
-        status_order,
-        alamat_pengiriman,
-        service_type,
-        notes,
-        payment_method,
-        id_order,
-      ]
-    );
+//   try {
+//     const [result] = await db.query(
+//       `UPDATE orders 
+//        SET item=?, quantity=?, total_harga=?, status_order=?, alamat_pengiriman=?, service_type=?, notes=?, payment_method=? 
+//        WHERE id_order=?`,
+//       [
+//         item,
+//         quantity,
+//         total_harga,
+//         status_order,
+//         alamat_pengiriman,
+//         service_type,
+//         notes,
+//         payment_method,
+//         id_order,
+//       ]
+//     );
 
-    res.json({ message: "Order updated", affectedRows: result.affectedRows });
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
-  }
-});
+//     res.json({ message: "Order updated", affectedRows: result.affectedRows });
+//   } catch (err) {
+//     res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// });
 
-// Delete order
-app.delete("/api/orders/:id_order", async (req, res) => {
-  const { id_order } = req.params;
+// // Delete order
+// app.delete("/api/orders/:id_order", async (req, res) => {
+//   const { id_order } = req.params;
 
-  try {
-    const [result] = await db.query("DELETE FROM orders WHERE id_order=?", [
-      id_order,
-    ]);
-    res.json({ message: "Order deleted", affectedRows: result.affectedRows });
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
-  }
-});
+//   try {
+//     const [result] = await db.query("DELETE FROM orders WHERE id_order=?", [
+//       id_order,
+//     ]);
+//     res.json({ message: "Order deleted", affectedRows: result.affectedRows });
+//   } catch (err) {
+//     res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// });
 
 // ===== tracking ====== ////
 app.get("/api/tracking/:id_order", async (req, res) => {

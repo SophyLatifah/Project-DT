@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS orders (
     service_type VARCHAR(100),
     notes TEXT,
     payment_method VARCHAR(50),
-    FOREIGN KEY (id_user) REFERENCES userS(ID)
+    FOREIGN KEY (id_user) REFERENCES users(ID)
 );
 
 -- SELECT *

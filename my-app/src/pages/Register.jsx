@@ -177,7 +177,7 @@ export default function Register() {
 
       <div className="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl w-96">
         <h2 className="text-xl font-semibold text-center mb-6 text-gray-700">
-          REGISTRASI
+          SIGN UP
         </h2>
 
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
