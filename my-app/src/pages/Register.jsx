@@ -224,7 +224,7 @@ export default function Register() {
             type="submit"
             className="w-full py-2 bg-gradient-to-r from-yellow-400 to-orange-400 text-white font-semibold rounded-lg hover:shadow-lg transition"
           >
-            Register
+            Sign Up
           </button>
         </form>
       </div>
