@@ -37,9 +37,14 @@ const handleSubmit = async (e) => {
     return;
   }
 
- 
+ const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You must be logged in to place an order.");
+      return;
+    }
+
   const orderData = {
-    id_user: 1, // dari session login
+    // id_user: 1, // dari session login
     item: partner, // partner laundry yg dipilih
     quantity,
     total_harga: totalCost,
@@ -59,6 +64,11 @@ const handleSubmit = async (e) => {
       body: JSON.stringify(orderData),
     });
 
+    if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.message || "Failed to create order");
+      }
+
     const data = await res.json();
     console.log("Order berhasil:", data);
 
@@ -66,6 +76,7 @@ const handleSubmit = async (e) => {
     Navigate("/tracking");
   } catch (err) {
     console.error("Gagal kirim order:", err);
+    alert("Gagal membuat order: " + err.message);
   }
 };
 
