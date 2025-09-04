@@ -93,6 +93,11 @@ app.post("/api/auth/login", async (req, res) => {
 
 // Create Order
 app.post("/api/orders", authenticate, async (req, res) => {
+console.log("Received order data:", req.body);
+console.log("User ID from token:", req.user.id);
+
+
+  
   const {
     item,
     quantity,
