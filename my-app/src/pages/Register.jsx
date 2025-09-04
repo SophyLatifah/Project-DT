@@ -152,8 +152,8 @@ export default function Register() {
       });
 
       const result = await res.json();
-      if (!result) {
-        setError(data.message || "Register failed");
+      if (!res.ok) {
+        setError(result.message || "Register failed");
         return;
       }
 
@@ -231,3 +231,4 @@ export default function Register() {
     </div>
   );
 }
+     
